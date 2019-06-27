@@ -584,6 +584,17 @@ div.listing {
   padding-bottom:20px;
   background:#f8f8f8;
 }
+div.mdlisting {
+  text-align:left;
+  margin:2% 2%;
+  padding:3px;
+  padding-right:20px;
+  padding-bottom:20px;
+  background:#f8f8f8;
+}
+.mdlisting h1 {
+  margin:0px !important;
+}
 pre a, td.code pre a {
   color:blue;
   font-style:italic;

@@ -26,6 +26,7 @@ require_once 'include/setup.php';
 require_once 'include/svnlook.php';
 require_once 'include/utils.php';
 require_once 'include/template.php';
+require_once 'include/parsedown.php';
 
 // Make sure that we have a repository
 if ($rep) {
@@ -106,13 +107,46 @@ if ($rep) {
 		}
 	}
 
+	// If markdown, deliver as converted html regardless of mimetype prop
+	if ($history && $_REQUEST['usemime'] && empty($mimeType) && $rep->hasReadAccess($path, false)) {
+		if (pathinfo($path, PATHINFO_EXTENSION) == "md") {
+			$base = basename($path);
+			$file = $config->getTempDir().'/tmpfile';
+			$Parsedown = new Parsedown();
+			$svnrep->getFileContents($path, $file, $rev, $peg, 'no');
+			$fileContents = file_get_contents($file);
+			$fileContents = $Parsedown->text($fileContents);
+			$mimeType = "text/html";
+			unlink($file);
+			header('Content-Type: '.$mimeType);
+			header('Content-Disposition: inline; filename='.urlencode($base));
+			echo $fileContents;
+			exit;
+		}
+	}
+
 	// If a MIME type is associated with the file, deliver with Content-Type header.
 	if ($history && !empty($mimeType) && $rep->hasReadAccess($path, false)) {
 		$base = basename($path);
-		header('Content-Type: '.$mimeType);
-		//header('Content-Length: '.$size);
-		header('Content-Disposition: inline; filename='.urlencode($base));
-		$svnrep->getFileContents($path, '', $rev, $peg);
+		//if ($mimeType == 'text/markdown') {
+		if (pathinfo($path, PATHINFO_EXTENSION) == "md") {
+			$file = $config->getTempDir().'/tmpfile';
+			$Parsedown = new Parsedown();
+			$svnrep->getFileContents($path, $file, $rev, $peg, 'no');
+			$fileContents = file_get_contents($file);
+			$fileContents = $Parsedown->text($fileContents);
+			$mimeType = "text/html";
+			unlink($file);
+			header('Content-Type: '.$mimeType);
+			header('Content-Disposition: inline; filename='.urlencode($base));
+			echo $fileContents;
+		}
+		else {
+			header('Content-Type: '.$mimeType);
+			//header('Content-Length: '.$size);
+			header('Content-Disposition: inline; filename='.urlencode($base));
+			$svnrep->getFileContents($path, '', $rev, $peg);
+		}
 		exit;
 	}
 
@@ -205,4 +239,4 @@ if ($rep) {
 
 // $listing is populated with file data when file.tmpl calls [websvn-getlisting]
 
-renderTemplate('file');
+renderTemplate(pathinfo($path, PATHINFO_EXTENSION) != "md" ? 'file' : 'markdown');
