@@ -26,6 +26,7 @@
 // SWIG binding has been produced for PHP, there'll be an option to use that instead.
 
 require_once 'include/utils.php';
+require_once 'include/parsedown.php';
 
 // {{{ Classes for retaining log information ---
 
@@ -814,6 +815,18 @@ class SVNRepository {
 
 	function listFileContents($path, $rev = 0, $peg = '') {
 		global $config;
+		if (pathinfo($path, PATHINFO_EXTENSION) == "md") {
+			$file = $config->getTempDir().'/tmpfile';
+			$Parsedown = new Parsedown();
+			$this->getFileContents($path, $file, $rev, $peg, 'no');
+			$fileContents = file_get_contents($file);
+			$fileContents = $Parsedown->text($fileContents);
+			unlink($file);
+			//$mimeType = "text/html";
+			//header('Content-Type: '.$mimeType);
+			//header('Content-Disposition: inline; filename='.urlencode($base));
+			echo $fileContents;
+		}
 
 		if ($config->useGeshi && $geshiLang = $this->highlightLanguageUsingGeshi($path)) {
 			$tempname = tempnamWithCheck($config->getTempDir(), 'websvn');
