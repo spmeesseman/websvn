@@ -27,6 +27,7 @@ require_once 'include/svnlook.php';
 require_once 'include/utils.php';
 require_once 'include/template.php';
 require_once 'include/bugtraq.php';
+require_once 'include/parsedown.php';
 
 function removeURLSeparator($url) {
 	return preg_replace('#(\?|&(amp;)?)$#', '', $url);
@@ -185,6 +186,7 @@ function showDirFiles($svnrep, $subs, $level, $limit, $rev, $peg, $listing, $ind
 	// For an expanded tree, give the last entry an "L" node to close the grouping
 	if ($treeview && $last_index != 0) {
 		$listing[$last_index - 1]['node'] = 1; // l-node
+		$last_index++;
 	}
 
 	return $listing;
@@ -334,6 +336,21 @@ if ($rep) {
 	$vars['showlastmod'] = $config->showLastModInListing();
 
 	$listing = showTreeDir($svnrep, $path, $rev, $peg, array());
+
+	$readme = '';
+	foreach ($listing as $entry) {
+		if (strtoupper($entry['filename']) == 'README.MD' || strtoupper($entry['filename']) == 'README') {
+			$file = $config->getTempDir().'/tmpfile';
+			$Parsedown = new Parsedown();
+			$svnrep->getFileContents($entry['path'], $file, $rev, $peg, 'no');
+			$fileContents = file_get_contents($file);
+			$readme = $Parsedown->text($fileContents);
+			unlink($file);
+			break;
+		}
+	}
+
+	$vars['readme'] = $readme ;
 
 	if (!$rep->hasReadAccess($path)) {
 		$vars['error'] = $lang['NOACCESS'];
