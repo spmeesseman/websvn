@@ -819,13 +819,10 @@ class SVNRepository {
 			$file = $config->getTempDir().'/tmpfile';
 			$Parsedown = new Parsedown();
 			$this->getFileContents($path, $file, $rev, $peg, 'no');
-			$fileContents = file_get_contents($file);
-			$fileContents = $Parsedown->text($fileContents);
+			$fileContents = $Parsedown->text(file_get_contents($file));
 			unlink($file);
-			//$mimeType = "text/html";
-			//header('Content-Type: '.$mimeType);
-			//header('Content-Disposition: inline; filename='.urlencode($base));
 			echo $fileContents;
+			return;
 		}
 
 		if ($config->useGeshi && $geshiLang = $this->highlightLanguageUsingGeshi($path)) {

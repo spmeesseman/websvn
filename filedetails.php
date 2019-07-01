@@ -115,7 +115,8 @@ if ($rep) {
 			$Parsedown = new Parsedown();
 			$svnrep->getFileContents($path, $file, $rev, $peg, 'no');
 			$fileContents = file_get_contents($file);
-			$fileContents = $Parsedown->text($fileContents);
+			$fileContents = '<html><link rel="stylesheet" type="text/css" href="https://app1.development.pjats.com/css/markdown.css" />'
+							. '<head></head><body>' . $Parsedown->text($fileContents) . '</body></html>';
 			$mimeType = "text/html";
 			unlink($file);
 			header('Content-Type: '.$mimeType);
@@ -134,7 +135,8 @@ if ($rep) {
 			$Parsedown = new Parsedown();
 			$svnrep->getFileContents($path, $file, $rev, $peg, 'no');
 			$fileContents = file_get_contents($file);
-			$fileContents = $Parsedown->text($fileContents);
+			$fileContents = '<html><link rel="stylesheet" type="text/css" href="https://app1.development.pjats.com/css/markdown.css" />'
+			 			    . '<head></head><body>' . $Parsedown->text($fileContents) . '</body></html>';
 			$mimeType = "text/html";
 			unlink($file);
 			header('Content-Type: '.$mimeType);
