@@ -27,6 +27,7 @@
 
 require_once 'include/utils.php';
 require_once 'include/parsedown.php';
+require_once 'include/parsedown-toc.php';
 
 // {{{ Classes for retaining log information ---
 
@@ -817,7 +818,7 @@ class SVNRepository {
 		global $config;
 		if (pathinfo($path, PATHINFO_EXTENSION) == "md") {
 			$file = $config->getTempDir().'/tmpfile';
-			$Parsedown = new Parsedown();
+			$Parsedown = new ParsedownToc();
 			$this->getFileContents($path, $file, $rev, $peg, 'no');
 			$fileContents = $Parsedown->text(file_get_contents($file));
 			unlink($file);

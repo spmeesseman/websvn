@@ -27,6 +27,7 @@ require_once 'include/svnlook.php';
 require_once 'include/utils.php';
 require_once 'include/template.php';
 require_once 'include/parsedown.php';
+require_once 'include/parsedown-toc.php';
 
 // Make sure that we have a repository
 if ($rep) {
@@ -112,7 +113,7 @@ if ($rep) {
 		if (pathinfo($path, PATHINFO_EXTENSION) == "md") {
 			$base = basename($path);
 			$file = $config->getTempDir().'/tmpfile';
-			$Parsedown = new Parsedown();
+			$Parsedown = new ParsedownToc();
 			$svnrep->getFileContents($path, $file, $rev, $peg, 'no');
 			$fileContents = file_get_contents($file);
 			$fileContents = '<html><link rel="stylesheet" type="text/css" href="https://app1.development.pjats.com/css/markdown.css" />'
@@ -132,7 +133,7 @@ if ($rep) {
 		//if ($mimeType == 'text/markdown') {
 		if (pathinfo($path, PATHINFO_EXTENSION) == "md") {
 			$file = $config->getTempDir().'/tmpfile';
-			$Parsedown = new Parsedown();
+			$Parsedown = new ParsedownToc();
 			$svnrep->getFileContents($path, $file, $rev, $peg, 'no');
 			$fileContents = file_get_contents($file);
 			$fileContents = '<html><link rel="stylesheet" type="text/css" href="https://app1.development.pjats.com/css/markdown.css" />'

@@ -28,6 +28,7 @@ require_once 'include/utils.php';
 require_once 'include/template.php';
 require_once 'include/bugtraq.php';
 require_once 'include/parsedown.php';
+require_once 'include/parsedown-toc.php';
 
 function removeURLSeparator($url) {
 	return preg_replace('#(\?|&(amp;)?)$#', '', $url);
@@ -342,7 +343,7 @@ if ($rep) {
 	foreach ($listing as $entry) {
 		if (strtoupper($entry['filename']) == 'README.MD' || strtoupper($entry['filename']) == 'README') {
 			$file = $config->getTempDir().'/tmpfile';
-			$Parsedown = new Parsedown();
+			$Parsedown = new ParsedownToc();
 			$svnrep->getFileContents($entry['path'], $file, $rev, $peg, 'no');
 			$fileContents = file_get_contents($file);
 			$readme = $Parsedown->text($fileContents);
