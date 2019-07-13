@@ -108,7 +108,7 @@ if ($rep) {
 	}
 
 	// If markdown, deliver as converted html regardless of mimetype prop
-	if ($history && $_REQUEST['usemime'] && empty($mimeType) && $rep->hasReadAccess($path, false)) {
+	if ($history && isset($_REQUEST['usemime']) && $_REQUEST['usemime'] && empty($mimeType) && $rep->hasReadAccess($path, false)) {
 		if (pathinfo($path, PATHINFO_EXTENSION) == "md") {
 			$base = basename($path);
 			$file = $config->getTempDir().'/tmpfile';
