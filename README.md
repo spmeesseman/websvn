@@ -6,4 +6,6 @@ WebSVN offers a view onto your subversion repositories that's been designed to r
 You can view the log of any file or directory and see a list of all the files changed, added or deleted in any given revision. 
 You can also view the differences between two versions of a file so as to see exactly what was changed in a particular revision.
 
-More information in project site. https://websvnphp.github.io/
+For GitHub/VisualSVN style markdown support, see the "websvn-spm" branch.
+
+![Screenshot](screenshot.png "Same directory view with README.md")
