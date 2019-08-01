@@ -773,13 +773,11 @@ div.blame-popup .date {
 }
 
 #wrap td.age, #wrap td.date {
-	padding-left: 3px;
-  padding-right: 8px;
   white-space: nowrap;
 }
 
 #wrap td.age, #wrap td.date, #wrap td.rev {
-	text-align: right;
+	text-align: left;
   white-space: nowrap;
 }
 
@@ -827,20 +825,35 @@ td.changes .mod {
 	background-image: url(images/page_white_edit.png);
 }
 
+#blame pre {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 0px;
+  border-radius: 3px;
+}
+
 #blame table td {
 	text-align: right;
-	padding-right: 4px;
+  padding-right: 4px;
+  padding: 0px;
 	border-color: white;
+  border-spacing: 0px !important;
+  line-height: 1 !important;
 }
 
 #blame table td.code {
 	text-align: left;
 	padding: 0;
 	border-color: #eeeeee;
+  border-spacing: 0px !important;
 }
 
 #blame table td.code pre {
 	border: none;
+  border-spacing: 0px !important;
 }
 
 #revision td.path a {
