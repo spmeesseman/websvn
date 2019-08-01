@@ -116,8 +116,13 @@ if ($rep) {
 			$Parsedown = new ParsedownToc();
 			$svnrep->getFileContents($path, $file, $rev, $peg, 'no');
 			$fileContents = file_get_contents($file);
+			$convertedHtml = $Parsedown->text($fileContents);
+			// Bug in parsedown example '>' gets converted to &amp;gt; when it should be just &gt;
+			$convertedHtml = str_replace("&amp;gt;", "&gt;", $convertedHtml);
+			$convertedHtml = str_replace("&amp;lt;", "&lt;", $convertedHtml);
+			$convertedHtml = str_replace("&amp;quot;", "&quot;", $convertedHtml);
 			$fileContents = '<html><link rel="stylesheet" type="text/css" href="https://app1.development.pjats.com/css/markdown.css" />'
-							. '<head></head><body>' . $Parsedown->text($fileContents) . '</body></html>';
+			 			    . '<head></head><body>' . $convertedHtml . '</body></html>';
 			$mimeType = "text/html";
 			unlink($file);
 			header('Content-Type: '.$mimeType);
@@ -136,8 +141,13 @@ if ($rep) {
 			$Parsedown = new ParsedownToc();
 			$svnrep->getFileContents($path, $file, $rev, $peg, 'no');
 			$fileContents = file_get_contents($file);
+			$convertedHtml = $Parsedown->text($fileContents);
+			// Bug in parsedown example '>' gets converted to &amp;gt; when it should be just &gt;
+			$convertedHtml = str_replace("&amp;gt;", "&gt;", $convertedHtml);
+			$convertedHtml = str_replace("&amp;lt;", "&lt;", $convertedHtml);
+			$convertedHtml = str_replace("&amp;quot;", "&quot;", $convertedHtml);
 			$fileContents = '<html><link rel="stylesheet" type="text/css" href="https://app1.development.pjats.com/css/markdown.css" />'
-			 			    . '<head></head><body>' . $Parsedown->text($fileContents) . '</body></html>';
+			 			    . '<head></head><body>' . $convertedHtml . '</body></html>';
 			$mimeType = "text/html";
 			unlink($file);
 			header('Content-Type: '.$mimeType);

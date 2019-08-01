@@ -820,9 +820,14 @@ class SVNRepository {
 			$file = $config->getTempDir().'/tmpfile';
 			$Parsedown = new ParsedownToc();
 			$this->getFileContents($path, $file, $rev, $peg, 'no');
-			$fileContents = $Parsedown->text(file_get_contents($file));
+			$fileContents = file_get_contents($file);
+			$convertedHtml = $Parsedown->text($fileContents);
+			// Bug in parsedown example '>' gets converted to &amp;gt; when it should be just &gt;
+			$convertedHtml = str_replace("&amp;gt;", "&gt;", $convertedHtml);
+			$convertedHtml = str_replace("&amp;lt;", "&lt;", $convertedHtml);
+			$convertedHtml = str_replace("&amp;quot;", "&quot;", $convertedHtml);
 			unlink($file);
-			echo $fileContents;
+			echo $convertedHtml;
 			return;
 		}
 
