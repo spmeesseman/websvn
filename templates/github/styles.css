@@ -1,3 +1,13 @@
+html,body {
+  background:#FFF;
+  color:gray;
+  font-family: 'Trebuchet MS', Verdana, sans-serif;
+  font-size:13px;
+  line-height:1.3em;
+  margin:0; padding:0 !important;
+  text-align:center;
+  height: 95%;
+}
 
 #ghfilelisting table {
   border-width: 0px;
@@ -21,6 +31,43 @@
 #ghfilelisting table tr:nth-child(2n) {
   background-color: #f8f8f8;
 }
+
+#diff-table table {
+  border-collapse:collapse;
+  width:100%;
+}
+#diff-table td {
+  padding:0;
+  text-align:left;
+}
+#diff-table th {
+  text-align:center;
+}
+#diff-table td, th {
+  border: 1px solid #eeeeee;
+}
+
+#diff-table p, blockquote, ul, ol, dl, table, pre {
+  margin: 0px 0 !important;
+}
+
+#diff-table pre {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 0px 0px !important;
+  border-radius: 3px;
+}
+
+#container-header h1 {
+    margin: -40px 0 0px !important;
+    padding: 0;
+    font-weight: bold;
+    -webkit-font-smoothing: antialiased;
+}
+
 
 #container {
 position: relative;
@@ -120,6 +167,8 @@ a img {
 #info {
   text-align:left;
   padding:5px 0;
+  color: rgb(161, 161, 161);
+  width:96%;
 }
 h1, h2 {
   color:gray;
@@ -157,6 +206,7 @@ h2 {
 }
 
 #info h2 {
+  color: gray;
   border-bottom:1px solid gray;
   padding:0 5px 10px;
   margin:0;
@@ -568,88 +618,106 @@ tr td code, tr td pre {
   display:block;
   height:100%;
 }
+#diff-table table {
+  border-width: 0px;
+  border: 0px none;
+  border-spacing: 0px !important;
+}
+#diff-table table th {
+  background-color: #f1f8ff;
+  font-weight: bold;
+  border-bottom: 1px solid #89c0f7 !important;
+  border-spacing: 0px !important;
+}
+
+#diff-table table th, table td {
+  border: 0px none !important;
+  padding: 6px 13px;
+  border-spacing: 0px !important;
+  border-bottom: 0px solid #e2e5e9 !important;
+}
 /* compare table */
-table.diff {
+#diff-table table.diff {
   margin:10px 0 20px;
   border-spacing:0;
   border-collapse:separate;
 }
-table.diff td {
+#diff-table table.diff td {
   color:black;
   padding:0;
   margin:0;
   border-color:#f0f0f0;
 }
-table.diff td, table td pre {
+#diff-table table.diff td, table td pre {
   padding-left:16px;
   background-position: 0 0;
   background-repeat:no-repeat;
   white-space:pre-wrap;
 }
-table td pre {
+#diff-table table td pre {
   border:1px solid white;
 }
-table tr:hover {
+#diff-table table tr:hover {
   background:white;
 }
-td.diffempty {
+#diff-table td.diffempty {
   background-color:#f8f8f8;
 }
-table tr:hover td.diff, table tr:hover td.diffempty {
+#diff-table table tr:hover td.diff, table tr:hover td.diffempty {
   background-color:#e8e8e8;
 }
-table td.diff pre {
+#diff-table table td.diff pre {
   background-position:2px 50%;
   background-repeat:no-repeat;
 }
-table.diff td.diffdeleted,
-table td.diffdeleted pre {
+#diff-table table.diff td.diffdeleted,
+#diff-table table td.diffdeleted pre {
   background-color:#f8e4cc;
   background-image:url(images/bullet_delete.png);
   border:1px solid #e8d4bc;
 }
-table.diff tr:hover td.diffdeleted,
-table tr:hover td.diffdeleted pre {
+#diff-table table.diff tr:hover td.diffdeleted,
+#diff-table table tr:hover td.diffdeleted pre {
   background-color:#ffccaa;
   border-color:#bb9977;
 }
-table.diff td.diffadded,
-table td.diffadded pre {
+#diff-table table.diff td.diffadded,
+#diff-table table td.diffadded pre {
   border:1px solid #cdf0cd;
   background-color:#ddffdd;
   background-image:url(images/bullet_add.png);
 }
-table.diff tr:hover td.diffadded,
-table tr:hover td.diffadded pre {
+#diff-table table.diff tr:hover td.diffadded,
+#diff-table table tr:hover td.diffadded pre {
   background-color:#bbffbb;
   border-color:#88bb88;
 }
-table td.diffchanged pre {
+#diff-table table td.diffchanged pre {
   border:1px solid #f0f0bc;
   background-color:#ffffcc;
   background-image:url(images/bullet_yellow.png);
 }
-table tr:hover td.diffchanged pre {
+#diff-table table tr:hover td.diffchanged pre {
   background-color:#ffff99;
   border-color:#bbbb55;
 }
 
-ins {
+#diff-table ins {
   background-color: #bbffbb;
   text-decoration: none;
 }
-tr:hover ins {
+#diff-table tr:hover ins {
   background-color: #99ff99;
 }
-del {
+#diff-table del {
   background-color: #ffccaa;
   text-decoration: none;
 }
-tr:hover del {
+#diff-table tr:hover del {
   background-color: #ffaa88;
 }
 
-code {
+#diff-table code {
   white-space: pre-wrap;
 }
 
@@ -706,12 +774,13 @@ div.blame-popup .date {
 
 #wrap td.age, #wrap td.date {
 	padding-left: 3px;
-	padding-right: 8px;
+  padding-right: 8px;
+  white-space: nowrap;
 }
 
 #wrap td.age, #wrap td.date, #wrap td.rev {
 	text-align: right;
-	white-space: nowrap;
+  white-space: nowrap;
 }
 
 #wrap p.pagelinks > * {
