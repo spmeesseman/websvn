@@ -22,4 +22,4 @@
 //
 // Version information
 
-$version = '2.5.1-SPM';
+$version = '2.6.0-SPM';
