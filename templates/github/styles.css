@@ -1,12 +1,25 @@
-html,body {
-  background:#FFF;
-  color:gray;
-  font-family: 'Trebuchet MS', Verdana, sans-serif;
-  font-size:13px;
-  line-height:1.3em;
-  margin:0; padding:0;
-  text-align:center;
-  height: 95%;
+
+#ghfilelisting table {
+  border-width: 0px;
+  border: 0px none;
+  border-spacing: 0px !important;
+}
+#ghfilelisting table th {
+  background-color: #f1f8ff;
+  font-weight: bold;
+  border-bottom: 1px solid #89c0f7 !important;
+  border-spacing: 0px !important;
+}
+
+#ghfilelisting table th, table td {
+  border: 0px none !important;
+  padding: 6px 13px;
+  border-spacing: 0px !important;
+  border-bottom: 1px solid #e2e5e9 !important;
+}
+
+#ghfilelisting table tr:nth-child(2n) {
+  background-color: #f8f8f8;
 }
 
 #container {
@@ -54,12 +67,13 @@ a img {
   padding: 10px 10px 0;
 }
 #wrap {
-  margin:0 2% 0 32%;
+  margin:0 2% 0 2%;
   text-align:left;
   background:#FFF;
-  width:65%;
+  width:96%;
   padding:5px 0;
 }
+
 #index #wrap tr {
   border-top:1px dotted lightgrey;
 }
@@ -104,9 +118,6 @@ a img {
   border-width: 0;
 }
 #info {
-  float:left;
-  width:28%;
-  margin-left:2%;
   text-align:left;
   padding:5px 0;
 }
@@ -134,16 +145,7 @@ h1 span {
 h1 span a, h1 span a:link {
   color:gray;
 }
-h2 a {
-  background:#FFF;
-  margin:0;
-}
-h2 a:link,
-h2 a:visited {
-  font-weight:normal;
-  letter-spacing: -0.018em;
-  color: #b00
-}
+
 h2 a:hover {
   background:#f2f2f2;
 }
@@ -357,95 +359,6 @@ li.new a:hover {
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++ main content: Directories
 */
 
-table {
-  border-collapse:collapse;
-  width:100%;
-}
-td {
-  padding:0;
-  text-align:left;
-}
-th {
-  text-align:center;
-}
-td, th {
-  border: 1px solid #eeeeee;
-}
-#info th, #info td {
-  border: none;
-  text-align: left;
-}
-#diff td, #blame td, table.diff td {
-  vertical-align:top;
-}
-thead th a {
-  color:white;
-}
-thead th a:hover {
-  text-decoration:underline;
-  color:white;
-  background:none;
-}
-thead tr {
-  background:#4d4d4d;
-}
-thead th {
-  background:#4d4d4d;
-  border-bottom:2px solid #000;
-  border-top:2px solid #808080;
-  border-right:1px solid #808080;
-  color:#FFF;
-  margin:3px 2px;
-  padding:3px 5px;
-}
-thead th.path {
-  text-align:left;
-  width:50%;
-}
-thead th.collno, thead th.colrev, thead th.colauth {
-  width:6%;
-}
-thead th.colcode {
-  width:73%;
-}
-tbody th {
-  background-color: #ddd;
-}
-tbody th.info {
-  background-color: #d0dfea;
-}
-tr td.code {
-  text-align:left;
-}
-td.code, td td.diff {
-  border: 1px solid #eee;
-}
-tr td.code pre {
-  padding: 1px 2px 0;
-  background-color:#f8f8f8;
-}
-tr:hover td.code pre {
-  background-color:#e8e8e8;
-}
-tr:hover td.code {
-  background-color:#FFF;
-}
-tr td.path, tr th.path {
-  text-align:left;
-  width: 100%;
-}
-tr td.path {
-  padding:0;
-}
-tr.row0 td {
-  background-color:#f0f0f0;
-}
-tr.row1 td {
-  background-color:#f8f8f8;
-}
-tr.row0:hover td, tr.row1:hover td {
-  background-color:#e8e8e8;
-}
 span.listing a, a.listing {
   padding-left:22px;
   background-image:url(images/sitemap_color.png);
@@ -572,7 +485,6 @@ tr td.feed a:link {
 */
 h2#pathlinks {
   text-transform:none;
-  margin:0 2% 15px;
 }
 div.listing {
   overflow:auto;
@@ -582,7 +494,6 @@ div.listing {
   padding:3px;
   padding-right:20px;
   padding-bottom:20px;
-  background:#f8f8f8;
 }
 div.mdlisting {
   text-align:left;
@@ -590,7 +501,6 @@ div.mdlisting {
   padding:3px;
   padding-right:20px;
   padding-bottom:20px;
-  background:#f8f8f8;
 }
 .mdlisting h1 {
   margin:0px !important;

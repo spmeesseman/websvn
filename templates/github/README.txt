@@ -36,7 +36,7 @@
 
       and change it into:
 
-      $config->setTemplatePath("$locwebsvnreal/templates/calm/");
+      $config->setTemplatePath("$locwebsvnreal/templates/github/");
 
   3)  Enjoy.
   
