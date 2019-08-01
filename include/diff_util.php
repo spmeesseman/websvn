@@ -55,8 +55,18 @@ class LineDiff extends LineDiffInterface {
 		if (strlen($str1) < 255 && strlen($str2) < 255) {
 			return levenshtein($str1, $str2);
 		}
-		$n = count($str1);
-		$m = count($str2);
+		if (is_array($str1) || $str1 instanceof Countable) {
+			$n = count($str1);
+		}
+		else {
+			$n = 0;
+		}
+		if (is_array($str1) || $str1 instanceof Countable) {
+			$m = count($str1);
+		}
+		else {
+			$m = 0;
+		}
 		$d = array_fill(0, $n + 1, array_fill(0, $m + 1, 0));
 		for ($i = 1; $i < $n + 1; $i++) {
 			$d[$i][0] = $i;
