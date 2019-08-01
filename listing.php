@@ -346,6 +346,10 @@ if ($rep) {
 			$svnrep->getFileContents($entry['path'], $file, $rev, $peg, 'no');
 			$fileContents = file_get_contents($file);
 			$readme = $Parsedown->text($fileContents);
+			// Bug in parsedown example '>' gets converted to &amp;gt; when it should be just &gt;
+			$readme = str_replace("&amp;gt;", "&gt;", $readme);
+			$readme = str_replace("&amp;lt;", "&lt;", $readme);
+			$readme = str_replace("&amp;quot;", "&quot;", $readme);
 			unlink($file);
 			break;
 		}
