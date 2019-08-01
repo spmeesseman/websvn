@@ -46,7 +46,7 @@ function createPathLinks($rep, $path, $rev, $peg = '') {
 
 	$pathSoFar = '/';
 	$pathSoFarURL = $config->getURL($rep, $pathSoFar, 'dir').$passRevString;
-	$vars['pathlinks'] = '<a href="'.$pathSoFarURL.'" class="root"><span>(root)</span></a>/';
+	$vars['pathlinks'] = $pathSoFarURL;
 
 	for ($n = 1; $n < $limit; $n++) {
 		$pathSoFar .= html_entity_decode($pathComponents[$n]).'/';
