@@ -493,6 +493,10 @@ $vars['validationurl'] = getFullURL($_SERVER['SCRIPT_NAME']).'?'.buildQuery($que
 $path = !empty($_REQUEST['path']) ? escape($_REQUEST['path']) : null;
 if ($path === null || $path === '')
 	$path = '/';
+else if (endsWith($path, '/') === false) {
+	$path .= '/';
+}
+
 $vars['safepath'] = escape($path);
 // Set operative and peg revisions (if specified) and save passed-in revision
 $rev = (int)@$_REQUEST['rev'];
@@ -585,4 +589,13 @@ function createRevisionSelectionForm() {
 
 function sendHeaderForbidden() {
 	http_response_code(403);
+}
+
+function endsWith($haystack, $needle)
+{
+    $length = strlen($needle);
+    if ($length == 0) {
+        return true;
+    }
+    return (substr($haystack, -$length) === $needle);
 }
